@@ -1,0 +1,121 @@
+return {
+  "mfussenegger/nvim-dap",
+  dependencies = {
+    {
+      "rcarriga/nvim-dap-ui",
+      dependencies = {
+        "mfussenegger/nvim-dap",
+        "nvim-neotest/nvim-nio"
+      }
+    },
+  },
+  config = function()
+    require("dapui").setup({
+      layouts = { {
+        elements = {
+          {
+            id = "scopes",
+            size = 0.8
+          },
+          {
+            id = "stacks",
+            size = 0.1
+          },
+          {
+            id = "breakpoints",
+            size = 0.1
+          },
+        },
+        position = "left",
+        size = 40
+      }, {
+          elements = {
+            {
+              id = "console",
+              size = 1
+            }
+          },
+          position = "bottom",
+          size = 10
+        } },
+    })
+
+    local dap, dapui = require("dap"), require("dapui")
+
+    dap.listeners.before.attach.dapui_config = function()
+      vim.opt.mouse = "a"
+      dapui.open()
+    end
+    dap.listeners.before.launch.dapui_config = function()
+      vim.opt.mouse = "a"
+      dapui.open()
+    end
+    dap.listeners.before.event_terminated.dapui_config = function()
+      vim.opt.mouse = ""
+      dapui.close()
+    end
+    dap.listeners.before.event_exited.dapui_config = function()
+      vim.opt.mouse = ""
+      dapui.close()
+    end
+
+    require("dap.ext.vscode").load_launchjs()
+
+    vim.keymap.set("n", "<Leader>dj", ":lua require'dap'.toggle_breakpoint()<CR>")
+    vim.keymap.set("n", "<Leader>dk", ":lua require'dap'.continue()<CR>")
+    vim.keymap.set("n", "<Leader>dl", ":lua require'dap'.restart()<CR>")
+    vim.keymap.set("n", "<Leader>du", ":lua require'dap'.step_over()<CR>")
+    vim.keymap.set("n", "<Leader>di", ":lua require'dap'.step_into()<CR>")
+    vim.keymap.set("n", "<Leader>do", ":lua require'dap'.step_out()<CR>")
+    vim.keymap.set("n", "<Leader>dp", ":lua require'dap'.disconnect({ terminateDebuggee = true })<CR>")
+    vim.fn.sign_define('DapBreakpoint', {
+      text = '⬤',
+      texthl = 'ErrorMsg',
+      linehl = '',
+      numhl = 'ErrorMsg'
+    })
+
+    vim.fn.sign_define('DapBreakpointCondition', {
+      text = '⬤',
+      texthl = 'ErrorMsg',
+      linehl = '',
+      numhl = 'SpellBad'
+    })
+
+    local pythonEnv = require('utils.python_env')
+    local masonpath = vim.fn.stdpath('data') .. '/mason'
+    dap.adapters.python = {
+      type = 'executable',
+      command = masonpath .. '/packages/debugpy/venv/' .. pythonEnv.getVenvSuffix(),
+      args = { '-m', 'debugpy.adapter' },
+      options = {
+        detached = true,
+      },
+    }
+
+    dap.configurations.python = {
+      {
+        type = 'python',
+        request = 'launch',
+        name = 'Launch file',
+        justMyCode = false,
+        program = '${file}',
+        cwd = vim.fn.getcwd(),
+        pythonPath = pythonEnv.getPythonEnv
+      },
+      {
+        type = 'python';
+        request = 'launch';
+        name = 'Launch file with arguments';
+        justMyCode = false,
+        program = '${file}';
+        args = function()
+          local args_string = vim.fn.input('Arguments: ')
+          return vim.split(args_string, " +")
+        end;
+        pythonPath = pythonEnv.getPythonEnv
+      },
+    }
+
+  end,
+}
