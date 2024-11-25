@@ -51,7 +51,6 @@ return {
     dap.listeners.before.event_terminated.dapui_config = function()
     end
     dap.listeners.before.event_exited.dapui_config = function()
-      vim.opt.mouse = ""
     end
 
     require("dap.ext.vscode").load_launchjs()
