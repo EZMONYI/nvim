@@ -43,31 +43,27 @@ return {
     local dap, dapui = require("dap"), require("dapui")
 
     dap.listeners.before.attach.dapui_config = function()
-      vim.opt.mouse = "a"
       dapui.open()
     end
     dap.listeners.before.launch.dapui_config = function()
-      vim.opt.mouse = "a"
       dapui.open()
     end
     dap.listeners.before.event_terminated.dapui_config = function()
-      vim.opt.mouse = ""
-      dapui.close()
     end
     dap.listeners.before.event_exited.dapui_config = function()
       vim.opt.mouse = ""
-      dapui.close()
     end
 
     require("dap.ext.vscode").load_launchjs()
 
-    vim.keymap.set("n", "<Leader>dj", ":lua require'dap'.toggle_breakpoint()<CR>")
-    vim.keymap.set("n", "<Leader>dk", ":lua require'dap'.continue()<CR>")
-    vim.keymap.set("n", "<Leader>dl", ":lua require'dap'.restart()<CR>")
-    vim.keymap.set("n", "<Leader>du", ":lua require'dap'.step_over()<CR>")
-    vim.keymap.set("n", "<Leader>di", ":lua require'dap'.step_into()<CR>")
-    vim.keymap.set("n", "<Leader>do", ":lua require'dap'.step_out()<CR>")
-    vim.keymap.set("n", "<Leader>dp", ":lua require'dap'.disconnect({ terminateDebuggee = true })<CR>")
+    vim.keymap.set("n", "<F1>", dap.toggle_breakpoint)
+    vim.keymap.set("n", "<F2>", dap.continue)
+    vim.keymap.set("n", "<F3>", dap.step_over)
+    vim.keymap.set("n", "<F4>", dap.step_into)
+    vim.keymap.set("n", "<F5>", dap.step_out)
+    vim.keymap.set("n", "<Leader>dq", dapui.close)
+    vim.keymap.set("n", "<Leader>dc", dap.clear_breakpoints)
+    vim.keymap.set("n", "<Leader>ds", dap.disconnect)
     vim.fn.sign_define('DapBreakpoint', {
       text = '⬤',
       texthl = 'ErrorMsg',

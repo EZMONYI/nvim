@@ -25,14 +25,19 @@ map("n", "<S-Tab>", ":bprevious<CR>", {desc = "prev buffer", noremap = true, sil
 map("n", "<leader>x", ":Bdelete!<CR>", {desc = "close current buffer", noremap = true, silent = true})
 map("n", "<leader>b", "<cmd> enew <CR>", {desc = "open new buffer", noremap = true, silent = true})
 
+-- Copy file paths
+map("n", "<leader>cf", "<cmd>let @+ = expand(\"%\")<CR>", { desc = "Copy File Name" })
+map("n", "<leader>cp", "<cmd>let @+ = expand(\"%:p\")<CR>", { desc = "Copy File Path" })
+
 -- Select all
 map("n", "==", "gg<S-v>G")
 
-map('n', 'd', '"_d')
-map('n', 'D', '"_D')
-map('v', 'd', '"_d')
 map('x', 'p', 'pgvy')
 
 map("n", "<C-s>", "<cmd> w <CR>", { noremap = true, silent = true })
 map("n", "<C-q>", "<cmd> q <CR>", { noremap = true, silent = true })
 
+map("n", "7", ":vertical resize +5<CR>", { noremap = true, silent = true })
+map("n", "8", ":vertical resize -5<CR>", { noremap = true, silent = true })
+map("n", "9", ":resize -5<CR>", { noremap = true, silent = true })
+map("n", "0", ":resize +5<CR>", { noremap = true, silent = true })
