@@ -4,10 +4,10 @@ return {
     {
       "rcarriga/nvim-dap-ui",
       dependencies = {
-        "mfussenegger/nvim-dap",
         "nvim-neotest/nvim-nio"
       }
     },
+    'jay-babu/mason-nvim-dap.nvim',
   },
   config = function()
     require("dapui").setup({
@@ -96,7 +96,7 @@ return {
         justMyCode = false,
         program = '${file}',
         cwd = vim.fn.getcwd(),
-        pythonPath = pythonEnv.getPythonEnv
+        pythonPath = pythonEnv.getPythonEnv,
       },
       {
         type = 'python';
