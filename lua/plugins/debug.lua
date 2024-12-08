@@ -55,11 +55,11 @@ return {
 
     require("dap.ext.vscode").load_launchjs()
 
-    vim.keymap.set("n", "<F1>", dap.toggle_breakpoint)
-    vim.keymap.set("n", "<F2>", dap.continue)
-    vim.keymap.set("n", "<F3>", dap.step_over)
-    vim.keymap.set("n", "<F4>", dap.step_into)
-    vim.keymap.set("n", "<F5>", dap.step_out)
+    vim.keymap.set("n", "<F1>", dap.continue)
+    vim.keymap.set("n", "<F2>", dap.step_over)
+    vim.keymap.set("n", "<F3>", dap.step_into)
+    vim.keymap.set("n", "<F4>", dap.step_out)
+    vim.keymap.set("n", "<Leader>db", dap.toggle_breakpoint)
     vim.keymap.set("n", "<Leader>dq", dapui.close)
     vim.keymap.set("n", "<Leader>dc", dap.clear_breakpoints)
     vim.keymap.set("n", "<Leader>ds", dap.disconnect)
