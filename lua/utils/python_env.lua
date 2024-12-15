@@ -1,9 +1,9 @@
 local M = {}
 function M.getVenvSuffix()
-  if vim.loop.os_uname().sysname == 'Linux' then
-    return 'bin/python'
-  elseif vim.loop.os_uname().sysname == 'Windows_NT' then
+  if vim.loop.os_uname().sysname == 'Windows_NT' then
     return 'Scripts/python.exe'
+  else
+    return 'bin/python'
   end
 end
 
