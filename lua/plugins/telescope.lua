@@ -14,11 +14,6 @@ return {
             require("telescope.themes").get_dropdown {
             }
           }
-        },
-        defaults = {
-          file_ignore_patterns = {
-            "data"
-          }
         }
       })
       local builtin = require("telescope.builtin")
