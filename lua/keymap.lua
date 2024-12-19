@@ -1,7 +1,5 @@
 local map = vim.keymap.set
 
-map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line", noremap = true, silent = true })
-map("i", "<C-e>", "<End>", { desc = "move end of line" , noremap = true, silent = true })
 map("i", "<C-h>", "<Left>", { desc = "move left", noremap = true, silent = true  })
 map("i", "<C-l>", "<Right>", { desc = "move right", noremap = true, silent = true  })
 map("i", "<C-j>", "<Down>", { desc = "move down", noremap = true, silent = true  })
@@ -22,7 +20,7 @@ map("n", "<C-u>", "<C-u>zz")
 -- Buffers
 map("n", "<Tab>", ":bnext<CR>", { desc = "next buffer", noremap = true, silent = true})
 map("n", "<S-Tab>", ":bprevious<CR>", {desc = "prev buffer", noremap = true, silent = true})
-map("n", "<leader>x", ":Bdelete!<CR>", {desc = "close current buffer", noremap = true, silent = true})
+map("n", "<leader>c", ":Bdelete!<CR>", {desc = "close current buffer", noremap = true, silent = true})
 map("n", "<leader>b", "<cmd> enew <CR>", {desc = "open new buffer", noremap = true, silent = true})
 
 -- Copy file paths
@@ -36,8 +34,4 @@ map('x', 'p', 'pgvy')
 
 map("n", "<C-s>", "<cmd> w <CR>", { noremap = true, silent = true })
 map("n", "<C-q>", "<cmd> q <CR>", { noremap = true, silent = true })
-
-map("n", "<F7>", ":vertical resize -5<CR>", { noremap = true, silent = true })
-map("n", "<F8>", ":resize -5<CR>", { noremap = true, silent = true })
-map("n", "<F9>", ":resize +5<CR>", { noremap = true, silent = true })
-map("n", "<F10>", ":vertical resize +5<CR>", { noremap = true, silent = true })
+map("n", "<space>e", ":Telescope file_browser<CR>")
