@@ -20,7 +20,7 @@ map("n", "<C-u>", "<C-u>zz")
 -- Buffers
 map("n", "<Tab>", ":bnext<CR>", { desc = "next buffer", noremap = true, silent = true})
 map("n", "<S-Tab>", ":bprevious<CR>", {desc = "prev buffer", noremap = true, silent = true})
-map("n", "<leader>c", ":Bdelete!<CR>", {desc = "close current buffer", noremap = true, silent = true})
+map("n", "<leader>x", ":Bdelete!<CR>", {desc = "close current buffer", noremap = true, silent = true})
 map("n", "<leader>b", "<cmd> enew <CR>", {desc = "open new buffer", noremap = true, silent = true})
 
 -- Copy file paths
